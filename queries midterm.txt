@@ -1,0 +1,32 @@
+/******************************************************************************************/
+Quantas pessoas morreram ao todo (42)
+SELECT a.Injury_Result, COUNT(Victim_ID) AS TOTAL FROM accident a
+INNER JOIN routes r ON a.Route_ID = r.Route_ID
+WHERE a.Injury_Result = 'Fatal'
+GROUP BY a.Injury_Result, a.Injury_Result
+ORDER BY COUNT(Victim_ID) DESC;
+/******************************************************************************************/
+Qual rota com mais acidentes (1st OOS, 2nd 55, 3rd 18)
+SELECT r.Route_Code, COUNT(Victim_ID) AS TOTAL FROM accident a
+INNER JOIN routes r ON a.Route_ID = r.Route_ID
+GROUP BY Route_Code, a.Injury_Result
+ORDER BY COUNT(Victim_ID) DESC;
+/******************************************************************************************/
+Qual Operator tem mais acidentes (Metroline com mais acidentes fatais 7) (Metroline 1st 3457)
+SELECT r.Operator, COUNT(Victim_ID) AS TOTAL FROM accident a
+INNER JOIN routes r ON a.Route_ID = r.Route_ID
+GROUP BY r.Operator
+ORDER BY COUNT(Victim_ID) DESC;
+/******************************************************************************************/
+Epoca do ano com mais acidentes
+SELECT MONTH(a.Date_Of_Incident), COUNT(v.Victim_ID) AS TOTAL FROM victim v
+INNER JOIN accident a ON a.Victim_ID = v.Victim_ID
+GROUP BY MONTH(a.Date_Of_Incident)
+ORDER BY COUNT(Victim_Age) DESC;
+/******************************************************************************************/
+Qual tipo de pessoa sofre mais acidente (Adultos todos os anos, porem o ano com mais acidentes pra adulto foi em 2017)
+SELECT a.Year, v.Victim_Age, COUNT(Victim_Age) AS TOTAL FROM victim v
+INNER JOIN accident a ON a.Victim_ID = v.Victim_ID
+GROUP BY a.Year, v.Victim_Age
+ORDER BY COUNT(Victim_Age) DESC;
+/******************************************************************************************/

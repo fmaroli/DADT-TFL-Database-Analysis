@@ -1,0 +1,19 @@
+{
+  "name": "midterm",
+  "version": "1.0.0",
+  "description": "App Database",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "author": "",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "mustache-express": "*",
+    "html": "*",
+    "util": "*",
+    "mysql2": "*"
+  },
+  "license": "ISC"
+}

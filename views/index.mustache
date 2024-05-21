@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Midterm DADT</title>
+</head>
+<body>
+	<h1>Midterm DADT</h1>
+	<p>We are analysing a Dataset from Transport for London regarding the number of incidents in their fleet during the years of 2015-2018</p>
+	<p>The following text is from queries made to the dabase and their responses</p>
+	<h3>First query</h3>
+	<p>How many people died in Total: <br>
+		SELECT a.Injury_Result, COUNT(Victim_ID) AS TOTAL FROM accident a<br>
+		INNER JOIN routes r ON a.Route_ID = r.Route_ID<br>
+		WHERE a.Injury_Result = 'Fatal'<br>
+		GROUP BY a.Injury_Result, a.Injury_Result<br>
+		ORDER BY COUNT(Victim_ID) DESC;</p>
+	<p>There was a total of {{query1}} deaths</p>
+
+	<h3>Second query</h3>
+	<p>Which are the routes with the most incidents:<br>
+		SELECT r.Route_Code, COUNT(Victim_ID) AS TOTAL FROM accident a<br>
+		INNER JOIN routes r ON a.Route_ID = r.Route_ID<br>
+		GROUP BY Route_Code, a.Injury_Result<br>
+		ORDER BY COUNT(Victim_ID) DESC;</p>
+	<p>Out of service buses in first place with {{query21}} incidents</p>
+	<p>Route {{route2}} with {{query22}} incidents</p>
+	<p>Route {{route3}} with {{query23}} incidents</p>
+
+	<h3>Third query</h3>
+	<p>Which bus operator has the most incidents on record:<br>
+		SELECT r.Operator, COUNT(Victim_ID) AS TOTAL FROM accident a<br>
+		INNER JOIN routes r ON a.Route_ID = r.Route_ID<br>
+		GROUP BY r.Operator<br>
+		ORDER BY COUNT(Victim_ID) DESC;</p>
+	<p>{{q3operator}} in 1st place with {{query3}} incidents</p>
+
+	<h3>Fourth query</h3>
+	<p>What is the month of the year when incidents happen the most:<br>
+		SELECT MONTH(a.Date_Of_Incident), COUNT(v.Victim_ID) AS TOTAL FROM victim v<br>
+		INNER JOIN accident a ON a.Victim_ID = v.Victim_ID<br>
+		GROUP BY MONTH(a.Date_Of_Incident)<br>
+		ORDER BY COUNT(Victim_Age) DESC;</p>
+	<p>The {{q4month}}th month of the year is usually the month with the most incidents, there were {{query4}} incidents in the month of July</p>
+
+	<h3>Fifth query</h3>
+	<p>What type of person is more frequently involved in incidents:<br>
+		SELECT a.Year, v.Victim_Age, COUNT(Victim_Age) AS TOTAL FROM victim v<br>
+		INNER JOIN accident a ON a.Victim_ID = v.Victim_ID<br>
+		GROUP BY a.Year, v.Victim_Age<br>
+		ORDER BY COUNT(Victim_Age) DESC;</p>
+	<p>The most common group involved in incidents are {{q5vicage}}s, they have been involved in {{query5}} incidents in the year of 2017 alone</p>
+</body>
+</html>
